@@ -1,0 +1,43 @@
+#!/bin/csh
+
+# 如果历史目录数组未定义，则初始化
+set dirs = ()
+printf "\e[?2004l"
+alias p 'printf "\e[?2004l"'
+alias h 'history'
+alias c 'set dirs=($cwd $dirs); cd \!*'
+alias g 'gvim'
+alias gt 'gvim --remote-tab-silent \!:1'
+alias pdf 'evince \!:1 &'
+alias png 'eog \!:1 &'
+alias f 'evince \!:1 &'
+set prompt="%{\033[31m%}%c2>%{\033[0m%} "
+alias cd 'echo -n "\033[32m" && pwd && echo -n "\033[0m" && chdir \!* && set prompt="%{\033[31m%}%c2>%{\033[0m%} " && echo -n "\033]0;`basename $cwd`\007" && ls -at'
+echo -n "\033]0;`basename $cwd`\007"
+alias ll 'ls -lth'
+alias l 'ls -t'
+alias . 'cd ../'
+alias .. 'cd ../../'
+alias ... 'cd ../../../'
+alias .... 'cd ../../../../'
+alias ..... 'cd ../../../../../'
+alias ...... 'cd ../../../../../../'
+alias ....... 'cd ../../../../../../../'
+alias ........ 'cd ../../../../../../../../'
+alias ......... 'cd ../../../../../../../../../'
+alias .......... 'cd ../../../../../../../../../../'
+alias ........... 'cd ../../../../../../../../../../../'
+alias ............ 'cd ../../../../../../../../../../../../'
+
+# 定义返回上一个目录的别名
+alias , 'cd $dirs[1] && set dirs=($dirs[2-])'
+alias ,, 'cd $dirs[2] && set dirs=($dirs[3-])'
+alias ,,, 'cd $dirs[3] && set dirs=($dirs[4-])'
+alias ,,,, 'cd $dirs[4] && set dirs=($dirs[5-])'
+alias ,,,,, 'cd $dirs[5] && set dirs=($dirs[6-])'
+
+
+
+
+
+
